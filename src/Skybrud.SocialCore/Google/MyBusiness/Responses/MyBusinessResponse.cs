@@ -27,15 +27,39 @@ namespace Skybrud.Social.Google.MyBusiness.Responses {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
 
-            JsonObject error = obj.GetObject("error");
+                JsonObject error = obj.GetObject("error");
 
-            int code = error.GetInt32("code");
-            string message = error.GetString("message");
+                int code = error.GetInt32("code");
+                string message = error.GetString("message");
+                message += ". ";
 
-            // TODO: Parse "errors"
+                //Parse "details"
+                var details = error.GetArray("details");
+                foreach (var detail in details.InternalArray)
+                {
+                    var detailObject = detail as JsonObject;
+                    if (detailObject != null)
+                    {
+                        var fieldViolations = detailObject.GetArray("fieldViolations");
+                        foreach (var field in fieldViolations.InternalArray)
+                        {
+                            var fieldObject = field as JsonObject;
+                            if (fieldObject != null)
+                            {
+                                message += $"fieldViolation: [{fieldObject.GetString("field")}] {fieldObject.GetString("description")}";
+                            }
+                        }
+                    }
+                }
 
-            throw new MyBusinessException(response, code, message);
+                throw new MyBusinessException(response, code, message);
+            }
+            else {
+                throw new MyBusinessException(response, (int)response.StatusCode, response.Body);
+            }
 
         }
 

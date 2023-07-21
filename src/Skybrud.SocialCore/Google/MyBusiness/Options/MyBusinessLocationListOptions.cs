@@ -1,4 +1,5 @@
 ﻿using System;
+using Skybrud.Social.Google.MyBusiness.Objects.Accounts;
 using Skybrud.Social.Http;
 using Skybrud.Social.Interfaces;
 
@@ -24,6 +25,11 @@ namespace Skybrud.Social.Google.MyBusiness.Options {
         /// </summary>
         public string LanguageCode { get; set; }
 
+        /// <summary>
+        /// Required. Read mask to specify what fields will be returned in the response.This is a comma-separated list of fully qualified names of fields. Example: "user.displayName,photo".
+        /// </summary>
+        public string ReadMask { get; set; }
+
         #endregion
 
         #region Constructors
@@ -36,6 +42,12 @@ namespace Skybrud.Social.Google.MyBusiness.Options {
             var query = base.GetQueryString();
             if (!String.IsNullOrWhiteSpace(LanguageCode)) query.Add("languageCode", LanguageCode);
             if (!String.IsNullOrWhiteSpace(Filter)) query.Add("filter", Filter);
+
+            if (String.IsNullOrWhiteSpace(ReadMask))
+            {
+                ReadMask = MyBusinessLocation.GetReadMask();
+            }
+            query.Add("readMask", ReadMask);
             return query;
         }
 

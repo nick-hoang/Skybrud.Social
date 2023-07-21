@@ -1,17 +1,16 @@
 ﻿using Skybrud.Social.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Skybrud.Social.Google.MyBusiness.Objects.Accounts
 {
+    /// <summary>
+    /// https://developers.google.com/my-business/reference/businessinformation/rest/v1/accounts.locations/list
+    /// </summary>
     public class MyBusinessLocation : GoogleApiResource
     {
         #region Properties
 
         /// <summary>
-        /// accounts/{accountId}/locations/{location_id}
+        /// Google identifier for this location in the form: locations/{locationId}.
         /// </summary>
         public string Url { get; set; }
         public string Id { get; set; }
@@ -40,13 +39,22 @@ namespace Skybrud.Social.Google.MyBusiness.Objects.Accounts
             var result = new MyBusinessLocation(obj)
             {
                 Url = obj.GetString("name"),
-                Name = obj.GetString("locationName"),
-                WebsiteUrl = obj.GetString("websiteUrl"),
+                Name = obj.GetString("title"),
+                WebsiteUrl = obj.GetString("websiteUri"),
                 LatLng = obj.GetObject("latlng", LocationLatLng.Parse),
-                Address = obj.GetObject("address", PostalAddress.Parse)
+                Address = obj.GetObject("storefrontAddress", PostalAddress.Parse)
             };
             result.Id = result.ParseId();
             return result;
+        }
+
+        /// <summary>
+        /// Read mask to specify what fields will be returned in the response.This is a comma-separated list of fully qualified names of fields. Example: "user.displayName,photo".        
+        /// </summary>
+        /// <returns></returns>
+        public static string GetReadMask()
+        {
+            return "name,title,websiteUri,latlng,storefrontAddress";
         }
 
         #endregion

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 using Skybrud.Social.Vimeo.Simple.Objects;
 using Skybrud.Social.Vimeo.Simple.Responses;
@@ -100,7 +99,7 @@ namespace Skybrud.Social.Vimeo.Simple {
             NameValueCollection query = new NameValueCollection();
             if (page > 0) query.Set("page", page + "");
             HttpWebResponse response = SocialUtils.DoHttpGetRequest("http://vimeo.com/api/v2/channel/" + id + "/videos.json", query);
-            if (response.StatusCode == HttpStatusCode.OK) return VimeoChannelVideosResponse.Parse(JsonConvert.DeserializeObject<JsonArray>(response.GetAsString()));
+            if (response.StatusCode == HttpStatusCode.OK) return VimeoChannelVideosResponse.Parse(JsonConverter.ParseArray(response.GetAsString()));
             string str = response.GetAsString();
             Match match = Regex.Match(str, "<section id=\"exception_msg\" class=\"block\">(.+?)</section>", RegexOptions.Singleline);
             throw new VimeoException(match.Success ? match.Groups[1].Value.Trim() : str);

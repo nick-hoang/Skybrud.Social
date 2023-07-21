@@ -1,5 +1,4 @@
 using System.Collections.Specialized;
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 using Skybrud.Social.Vimeo.Advanced.Responses;
 
@@ -52,7 +51,7 @@ namespace Skybrud.Social.Vimeo.Advanced.Endpoints {
         /// <param name="userId">An ID, username or access token identifying the user.</param>
         /// <see cref="https://developer.vimeo.com/apis/advanced/methods/vimeo.people.getInfo"/>
         public VimeoUserResponse GetInfo(string userId) {
-            return VimeoUserResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(GetInfoAsRawJson(userId)));
+            return VimeoUserResponse.Parse(JsonConverter.ParseObject(GetInfoAsRawJson(userId)));
         }
 
         #endregion

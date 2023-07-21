@@ -18,7 +18,7 @@ namespace Skybrud.Social.Google.MyBusiness.Options {
         public string OrderBy { get; set; }
         
         /// <summary>
-        /// Gets or sets the maximum amount if items to return on each page (maximum is 50).
+        /// Gets or sets the maximum amount if items to return on each page (in [2 100]).
         /// </summary>
         public int MaxResults { get; set; }
 
@@ -44,7 +44,7 @@ namespace Skybrud.Social.Google.MyBusiness.Options {
         #region Constructors
 
         public MyBusinessGenericListOptions() {
-            MaxResults = 200;
+            MaxResults = 100;
         }
 
         #endregion

@@ -1,5 +1,4 @@
 using System.Collections.Specialized;
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 using Skybrud.Social.Vimeo.Advanced.Responses;
 
@@ -31,7 +30,7 @@ namespace Skybrud.Social.Vimeo.Advanced.Endpoints {
             string response = Service.Client.DoHttpRequestAsString("GET", "http://vimeo.com/api/rest/v2", query, null);
 
             // TODO: Validate the server response
-            JsonObject json = JsonConvert.DeserializeObject<JsonObject>(response);
+            JsonObject json = JsonConverter.ParseObject(response);
 
             // Return the response object
             return VimeoVideoResponse.Parse(json);

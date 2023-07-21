@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using Skybrud.Social.Google.Analytics.Objects;
 using Skybrud.Social.Google.Exceptions;
 using Skybrud.Social.Json;
@@ -66,7 +65,7 @@ namespace Skybrud.Social.Google.Analytics.Responses {
         /// </summary>
         /// <param name="json">The JSON string representation of the object.</param>
         public static AnalyticsDataResponse ParseJson(string json) {
-            return Parse(JsonConvert.DeserializeObject<JsonObject>(json));
+            return Parse(JsonConverter.ParseObject(json));
         }
 
         /// <summary>

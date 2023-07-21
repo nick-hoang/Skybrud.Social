@@ -97,9 +97,12 @@ namespace Skybrud.Social {
             }
 
             // Get the response
-            try {
+            try
+            {
                 return (HttpWebResponse)request.GetResponse();
-            } catch (WebException ex) {
+            }
+            catch (WebException ex)
+            {
                 return (HttpWebResponse)ex.Response;
             }
 

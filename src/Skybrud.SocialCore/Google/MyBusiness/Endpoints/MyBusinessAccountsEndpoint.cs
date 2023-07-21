@@ -4,9 +4,11 @@ using Skybrud.Social.Google.MyBusiness.Objects.Accounts;
 using Skybrud.Social.Google.MyBusiness.Options;
 using Skybrud.Social.Google.MyBusiness.Responses;
 using Skybrud.Social.Json;
+using System;
 
 namespace Skybrud.Social.Google.MyBusiness.Endpoints {
     
+    [Obsolete("MyBusiness Google Api has been deprecated on May 30 2023, switch to MyBusinessInformation instead")]
     public class MyBusinessAccountsEndpoint
     {
 

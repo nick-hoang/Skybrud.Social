@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using Skybrud.Social.BitBucket.Objects;
 using Skybrud.Social.Json;
 
@@ -23,7 +22,7 @@ namespace Skybrud.Social.BitBucket.Responses {
         #region Methods
 
         public static BitBucketChangesetsResponse ParseJson(string str) {
-            return Parse(JsonConvert.DeserializeObject<JsonObject>(str));
+            return Parse(JsonConverter.ParseObject(str));
         }
 
         public static BitBucketChangesetsResponse Parse(JsonObject obj) {

@@ -1,6 +1,5 @@
 using System.IO;
 using System.Net;
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 
 namespace Skybrud.Social.Http {
@@ -95,7 +94,7 @@ namespace Skybrud.Social.Http {
         /// <var>JsonArray</var>.
         /// </summary>
         public IJsonObject GetBodyAsJson() {
-            return Body == null ? null : JsonConvert.DeserializeObject<IJsonObject>(Body);
+            return Body == null ? null : JsonConverter.ParseObject(Body);
         }
 
         /// <summary>

@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -170,7 +169,7 @@ namespace Skybrud.Social.Json
         /// </summary>
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonConverter.ToJson(this);
         }
 
         /// <summary>
@@ -192,7 +191,7 @@ namespace Skybrud.Social.Json
         /// <param name="path">The path to the file.</param>
         public static JsonArray LoadJson(string path)
         {
-            return JsonConvert.DeserializeObject<JsonArray>(File.ReadAllText(path));
+            return JsonConverter.ParseArray(File.ReadAllText(path));
         }
 
         /// <summary>
@@ -201,7 +200,7 @@ namespace Skybrud.Social.Json
         /// <param name="json">The JSON string representation of the array.</param>
         public static JsonArray ParseJson(string json)
         {
-            return JsonConvert.DeserializeObject<JsonArray>(json);
+            return JsonConverter.ParseArray(json);
         }
         #endregion
 

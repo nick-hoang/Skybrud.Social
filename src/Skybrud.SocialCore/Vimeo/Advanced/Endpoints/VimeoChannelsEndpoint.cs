@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 using Skybrud.Social.Vimeo.Advanced.Endpoints.Raw;
 using Skybrud.Social.Vimeo.Advanced.Enums;
@@ -30,19 +29,19 @@ namespace Skybrud.Social.Vimeo.Advanced.Endpoints {
         #region Method: vimeo.channels.getAll
 
         public VimeoChannelsResponse GetAll() {
-            return VimeoChannelsResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetAll()));
+            return VimeoChannelsResponse.Parse(JsonConverter.ParseObject(Raw.GetAll()));
         }
         
         public VimeoChannelsResponse GetAll(string username) {
-            return VimeoChannelsResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetAll(username)));
+            return VimeoChannelsResponse.Parse(JsonConverter.ParseObject(Raw.GetAll(username)));
         }
         
         public VimeoChannelsResponse GetAll(string username, int page, int perPage) {
-            return VimeoChannelsResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetAll(username, page, perPage)));
+            return VimeoChannelsResponse.Parse(JsonConverter.ParseObject(Raw.GetAll(username, page, perPage)));
         }
         
         public VimeoChannelsResponse GetAll(string username, VimeoChannelsSort sort, int page, int perPage) {
-            return VimeoChannelsResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetAll(username, sort, page, perPage)));
+            return VimeoChannelsResponse.Parse(JsonConverter.ParseObject(Raw.GetAll(username, sort, page, perPage)));
         }
 
         #endregion
@@ -83,7 +82,7 @@ namespace Skybrud.Social.Vimeo.Advanced.Endpoints {
         /// </summary>
         /// <param name="channelId">The ID of the channel.</param>
         public VimeoVideosResponse GetVideos(int channelId) {
-            return VimeoVideosResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetVideos(channelId, null, 0, 0, true, true)));
+            return VimeoVideosResponse.Parse(JsonConverter.ParseObject(Raw.GetVideos(channelId, null, 0, 0, true, true)));
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace Skybrud.Social.Vimeo.Advanced.Endpoints {
         /// <param name="page">The page to retrieve.</param>
         /// <param name="perPage">The amount of videos per page.</param>
         public VimeoVideosResponse GetVideos(int channelId, int page, int perPage) {
-            return VimeoVideosResponse.Parse(JsonConvert.DeserializeObject<JsonObject>(Raw.GetVideos(channelId, null, page, perPage, true, true)));
+            return VimeoVideosResponse.Parse(JsonConverter.ParseObject(Raw.GetVideos(channelId, null, page, perPage, true, true)));
         }
 
         #endregion

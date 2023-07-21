@@ -38,7 +38,7 @@ namespace Skybrud.Social.Google.MyBusiness.Endpoints.Raw {
 
         public SocialHttpResponse List(string accountId, MyBusinessLocationListOptions options)
         {            
-            return Client.DoAuthenticatedGetRequest($"https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations", options);
+            return Client.DoAuthenticatedGetRequest($"https://mybusinessbusinessinformation.googleapis.com/v1/accounts/{accountId}/locations", options);
         }
 
         /// <summary>

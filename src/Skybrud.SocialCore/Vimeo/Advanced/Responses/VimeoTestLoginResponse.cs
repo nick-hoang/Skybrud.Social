@@ -1,5 +1,3 @@
-using System;
-using Newtonsoft.Json;
 using Skybrud.Social.Json;
 
 namespace Skybrud.Social.Vimeo.Advanced.Responses {
@@ -22,7 +20,7 @@ namespace Skybrud.Social.Vimeo.Advanced.Responses {
         public string Username { get; private set; }
 
         public static VimeoTestLoginResponse Parse(string str) {
-            return Parse(JsonConvert.DeserializeObject<JsonObject>(str));
+            return Parse(JsonConverter.ParseObject(str));
         }
 
         public static VimeoTestLoginResponse Parse(JsonObject obj) {
