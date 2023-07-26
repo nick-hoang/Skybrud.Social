@@ -135,7 +135,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public FacebookOAuthClient() {
-            Version = "v2.3";
+            Version = "v15.0";
             Accounts = new FacebookAccountsRawEndpoint(this);
             Apps = new FacebookAppsRawEndpoint(this);
             Debug = new FacebookDebugRawEndpoint(this);
@@ -225,13 +225,13 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// <param name="state">The state to send to Facebook's OAuth login page.</param>
         /// <param name="scope">The scope of the application.</param>
         /// <returns>Returns an authorization URL based on <code>state</code> and <code>scope</code>.</returns>
-        public string GetAuthorizationUrl(string state, params string[] scope) {
+        public string GetAuthorizationUrl(string state, params string[] scopes) {
             return String.Format(
                 "https://www.facebook.com" + (String.IsNullOrWhiteSpace(Version) ? "" : "/" + Version) + "/dialog/oauth?client_id={0}&redirect_uri={1}&state={2}&scope={3}",
                 AppId,
                 RedirectUri,
                 state,
-                String.Join(",", scope)
+                String.Join(",", scopes)
             );
         }
 

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Skybrud.Social.Facebook.Endpoints.Raw;
+using Skybrud.Social.Facebook.Objects.Pages;
 using Skybrud.Social.Facebook.Options.Pages;
 using Skybrud.Social.Facebook.Responses.Pages;
 
@@ -54,14 +56,35 @@ namespace Skybrud.Social.Facebook.Endpoints {
         }
 
         /// <summary>
+        /// Get user's pages
+        /// </summary>
+        /// <param name="identifier">'me' for default</param>
+        /// <returns>FacebookPagesResponse</returns>
+        public FacebookPagesResponse GetUserPages(string identifier = "me")
+        {
+            return FacebookPagesResponse.ParseResponse(Raw.GetUserPages(identifier));
+        }
+
+        /// <summary>
         /// Get all user's pages
         /// </summary>
         /// <param name="identifier">'me' for default</param>
         /// <returns></returns>
-        public FacebookPagesResponse GetUserPages(string identifier = "me")
+        public List<FacebookPage> GetAllUserPages(string identifier = "me")
         {
-            return FacebookPagesResponse.ParseResponse(Raw.GetUserPages(identifier));
-        }      
+            var result = new List<FacebookPage>();
+            var response = FacebookPagesResponse.ParseResponse(Raw.GetUserPages(identifier));
+            if (response.Body.Data != null)
+            {
+                result.AddRange(response.Body.Data);
+            }
+            while (response.Body.Paging != null && !string.IsNullOrEmpty(response.Body.Paging.Next))
+            {
+                result.AddRange(response.Body.Data);
+                response = FacebookPagesResponse.ParseResponse(Service.Pages.Raw.Client.DoAuthenticatedGetRequest(response.Body.Paging.Next));
+            }
+            return result;
+        }
 
         #endregion
 

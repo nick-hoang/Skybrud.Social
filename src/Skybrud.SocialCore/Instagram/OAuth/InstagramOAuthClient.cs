@@ -177,13 +177,13 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// </summary>
         /// <param name="state">A unique state for the request.</param>
         /// <param name="scopes">The scopes that separate by coma</param>
-        public string GetAuthorizationUrl(string state, string scopes) {
+        public string GetAuthorizationUrl(string state, params string[] scopes) {
             return String.Format(
                 "https://api.instagram.com/oauth/authorize?client_id={0}&redirect_uri={1}&response_type=code&state={2}&scope={3}",
                 HttpUtility.UrlEncode(ClientId),
                 HttpUtility.UrlEncode(RedirectUri),
                 HttpUtility.UrlEncode(state),
-                HttpUtility.UrlEncode(scopes.ToLower())
+                HttpUtility.UrlEncode(String.Join(",", scopes).ToLower())
             );
         }        
 
