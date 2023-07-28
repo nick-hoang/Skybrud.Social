@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Skybrud.Social.Facebook.Endpoints.Raw;
+using Skybrud.Social.Facebook.Fields;
 using Skybrud.Social.Facebook.Objects.Pages;
 using Skybrud.Social.Facebook.Options.Pages;
 using Skybrud.Social.Facebook.Responses.Pages;
@@ -82,6 +83,21 @@ namespace Skybrud.Social.Facebook.Endpoints {
             {
                 result.AddRange(response.Body.Data);
                 response = FacebookPagesResponse.ParseResponse(Service.Pages.Raw.Client.DoAuthenticatedGetRequest(response.Body.Paging.Next));
+            }
+            //integrate the business_account
+            var businessAccountFieldName = "instagram_business_account";
+            var businessAccountField = new FacebookField(businessAccountFieldName);
+            foreach (var p in result)
+            {
+                var getPageOptions = new FacebookGetPageOptions(p.Id);
+                getPageOptions.Fields.Add(businessAccountField);
+
+                var page = FacebookPagesResponse.ParseResponse(Raw.Client.Pages.GetPage(getPageOptions));
+                var businessAccount = page.Body.JsonObject.GetObject(businessAccountFieldName);
+                if (businessAccount != null)
+                {
+                    p.BusinessAccountId = businessAccount.GetString("id");
+                }
             }
             return result;
         }

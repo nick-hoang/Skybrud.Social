@@ -195,6 +195,11 @@ namespace Skybrud.Social.Facebook.Objects.Pages {
 
         #endregion
 
+        /// <summary>
+        /// The Instagram Business account that be integrated with this page
+        /// </summary>
+        public string BusinessAccountId { get; set; }
+
         #region Constructors
 
         private FacebookPage(JsonObject obj) : base(obj) { }
