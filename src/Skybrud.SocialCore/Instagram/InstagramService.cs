@@ -62,7 +62,7 @@ namespace Skybrud.Social.Instagram {
         /// initialized from the access token.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
-        public static InstagramService CreateFromAccessToken(string accessToken, bool useInstagramGraphAPI = false, string facebookApiVersion = "v6.0")
+        public static InstagramService CreateFromAccessToken(string accessToken, bool useInstagramGraphAPI = false, string facebookApiVersion = "v18.0")
         {
             return new InstagramService
             {

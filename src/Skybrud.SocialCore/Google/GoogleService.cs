@@ -110,7 +110,7 @@ namespace Skybrud.Social.Google {
         /// Initializes a new instance based on the specified refresh token.
         /// The refresh token is used for making a call to the Google Accounts
         /// API to get a new access token. Access tokens typically expire after
-        /// an hour (3600 seconds).
+        /// an hour (3600 seconds). https://developers.google.com/identity/protocols/oauth2/web-server#offline
         /// </summary>
         /// <param name="clientId">The client ID.</param>
         /// <param name="clientSecret">The client secret.</param>
@@ -136,6 +136,7 @@ namespace Skybrud.Social.Google {
 
             // Set the access token on the client
             client.AccessToken = response.AccessToken;
+            client.AccessTokenExpiresIn = response.ExpiresIn;
 
             // Initialize a new GoogleService instance based on the OAuth client
             return new GoogleService {

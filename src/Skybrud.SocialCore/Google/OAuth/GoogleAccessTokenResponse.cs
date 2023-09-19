@@ -20,7 +20,7 @@ namespace Skybrud.Social.Google.OAuth {
         public string RefreshToken { get; private set; }
 
         /// <summary>
-        /// The remaining lifetime on the access token.
+        /// The remaining lifetime of the access token in seconds.
         /// </summary>
         public TimeSpan ExpiresIn { get; private set; }
 

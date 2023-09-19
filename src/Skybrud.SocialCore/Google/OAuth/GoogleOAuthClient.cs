@@ -61,6 +61,11 @@ namespace Skybrud.Social.Google.OAuth {
         public string AccessToken { get; set; }
 
         /// <summary>
+        /// The remaining lifetime of the access token in seconds.
+        /// </summary>
+        public TimeSpan AccessTokenExpiresIn { get; set; }
+
+        /// <summary>
         /// Gets or sets the server key.
         /// </summary>
         public string ServerKey { get; set; }
@@ -190,6 +195,11 @@ namespace Skybrud.Social.Google.OAuth {
 
         }
 
+        /// <summary>
+        /// https://developers.google.com/identity/protocols/oauth2/web-server#offline
+        /// </summary>
+        /// <param name="refreshToken"></param>
+        /// <returns></returns>
         public GoogleAccessTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
 
             // Declare the POST data
