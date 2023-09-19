@@ -66,7 +66,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <summary>
         /// Default is v6.0
         /// </summary>
-        public string FacebookApiVersion { get; set; }
+        public string FacebookApiVersion { get; set; } = "v18.0";
 
         /// <summary>
         /// Gets a reference to the locations endpoint.
@@ -110,8 +110,7 @@ namespace Skybrud.Social.Instagram.OAuth {
         /// <summary>
         /// Initializes an OAuth client with empty information.
         /// </summary>
-        public InstagramOAuthClient() {
-            // default constructor
+        public InstagramOAuthClient() {            
         }
 
         /// <summary>

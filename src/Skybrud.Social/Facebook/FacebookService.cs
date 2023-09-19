@@ -117,9 +117,9 @@ namespace Skybrud.Social.Facebook {
         /// </summary>
         /// <param name="accessToken">The access token.</param>
         /// <returns>Returns the created instance of <code>FacebookService</code>.</returns>
-        public static FacebookService CreateFromAccessToken(string accessToken) {
+        public static FacebookService CreateFromAccessToken(string accessToken, string version = "v18.0") {
             return new FacebookService {
-                Client = new FacebookOAuthClient(accessToken)
+                Client = new FacebookOAuthClient(accessToken) { Version = version }
             };
         }
 
