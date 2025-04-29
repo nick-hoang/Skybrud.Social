@@ -46,7 +46,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// <summary>
         /// Gets or sets the version of the Facebook Graph API to be used. Defaults to <code>v2.3</code>.
         /// </summary>
-        public string Version { get; set; } = "v18.0";
+        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets the locale of the client.
@@ -134,8 +134,8 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// <summary>
         /// Initializes an OAuth client with empty information.
         /// </summary>
-        public FacebookOAuthClient() {
-            Version = "v2.3";
+        public FacebookOAuthClient(string apiVersion) {
+            Version = apiVersion;
             Accounts = new FacebookAccountsRawEndpoint(this);
             Apps = new FacebookAppsRawEndpoint(this);
             Debug = new FacebookDebugRawEndpoint(this);
@@ -157,8 +157,8 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// the client will have no information about your app.
         /// </summary>
         /// <param name="accessToken">A valid access token.</param>
-        public FacebookOAuthClient(string accessToken) : this() {
-            AccessToken = accessToken;
+        public FacebookOAuthClient(string accessToken, string apiVersion) : this(apiVersion) {
+            AccessToken = accessToken;            
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// </summary>
         /// <param name="appId">The ID of the app.</param>
         /// <param name="appSecret">The secret of the app.</param>
-        public FacebookOAuthClient(long appId, string appSecret) : this() {
+        public FacebookOAuthClient(long appId, string appSecret, string apiVersion) : this(apiVersion) {
             AppId = appId + "";
             AppSecret = appSecret;
         }
@@ -177,7 +177,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// <param name="appId">The ID of the app.</param>
         /// <param name="appSecret">The secret of the app.</param>
         /// <param name="redirectUri">The redirect URI of the app.</param>
-        public FacebookOAuthClient(long appId, string appSecret, string redirectUri) : this() {
+        public FacebookOAuthClient(long appId, string appSecret, string redirectUri, string apiVersion) : this(apiVersion) {
             AppId = appId + "";
             AppSecret = appSecret;
             RedirectUri = redirectUri;
@@ -188,7 +188,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// </summary>
         /// <param name="appId">The ID of the app.</param>
         /// <param name="appSecret">The secret of the app.</param>
-        public FacebookOAuthClient(string appId, string appSecret) : this() {
+        public FacebookOAuthClient(string appId, string appSecret, string apiVersion) : this(apiVersion) {
             AppId = appId;
             AppSecret = appSecret;
         }
@@ -199,7 +199,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// <param name="appId">The ID of the app.</param>
         /// <param name="appSecret">The secret of the app.</param>
         /// <param name="redirectUri">The redirect URI of the app.</param>
-        public FacebookOAuthClient(string appId, string appSecret, string redirectUri) : this() {
+        public FacebookOAuthClient(string appId, string appSecret, string redirectUri, string apiVersion) : this(apiVersion) {
             AppId = appId;
             AppSecret = appSecret;
             RedirectUri = redirectUri;

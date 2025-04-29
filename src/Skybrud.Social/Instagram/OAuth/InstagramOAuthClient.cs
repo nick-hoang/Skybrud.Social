@@ -64,9 +64,9 @@ namespace Skybrud.Social.Instagram.OAuth {
         public bool UseInstagramGraphAPI { get; set; }
 
         /// <summary>
-        /// Default is v6.0
+        /// Default is v18.0
         /// </summary>
-        public string FacebookApiVersion { get; set; } = "v18.0";
+        public string FacebookApiVersion { get; set; } = "v22.0";
 
         /// <summary>
         /// Gets a reference to the locations endpoint.
