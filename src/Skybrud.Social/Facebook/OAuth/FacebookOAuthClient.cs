@@ -135,7 +135,7 @@ namespace Skybrud.Social.Facebook.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public FacebookOAuthClient() {
-            Version = "v15.0";
+            Version = "v18.0";
             Accounts = new FacebookAccountsRawEndpoint(this);
             Apps = new FacebookAppsRawEndpoint(this);
             Debug = new FacebookDebugRawEndpoint(this);

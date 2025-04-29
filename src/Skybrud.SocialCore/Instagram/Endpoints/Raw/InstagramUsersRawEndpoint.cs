@@ -45,11 +45,12 @@ namespace Skybrud.Social.Instagram.Endpoints.Raw {
             }
 
             return Client.DoAuthenticatedGetRequest(url);
-        }                
-        
+        }
+
         /// <summary>
         /// Get user's medias (image, video, or album)
         /// You will need the instagram_graph_user_profile permission, so request the user_profile scope when you get authorization from the user.
+        /// https://developers.facebook.com/docs/instagram-basic-display-api/reference/user/media
         /// </summary>
         /// <param name="identifier">UserId or Me</param>
         /// <param name="count"></param>
